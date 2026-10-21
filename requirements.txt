@@ -1,0 +1,6 @@
+requests
+beautifulsoup4
+lxml
+phonenumbers
+# optional, only for JavaScript-rendered sites:
+# playwright   (then: playwright install chromium)
