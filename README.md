@@ -1,4 +1,4 @@
-# automated_general
+# webharvest
 
 A single-file scraper that works on any website with no per-site configuration. Give it a URL; it
 discovers pages (links and sitemaps), extracts content, contacts and assets, and writes JSON.
@@ -6,7 +6,7 @@ discovers pages (links and sitemaps), extracts content, contacts and assets, and
 ## Setup
 
 ```bash
-cd automated_general
+cd webharvest
 python3 -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
 # optional, for JavaScript-heavy sites:
@@ -33,6 +33,11 @@ python scraper.py                                           # prompts for URLs
 | `--no-sitemap` | off | skip sitemap.xml discovery |
 | `--region` | from TLD | default country for phone parsing (`IN`, `US`, ...) |
 | `--workers`, `--delay-min/max` | 2, 1.0/2.0 s | concurrency and per-host jittered spacing |
+| `--timeout`, `--retries` | see `--help` | per-request timeout and retry count |
+| `--min-words` | see `--help` | static pages with fewer words trigger `--render auto` |
+| `--max-query-variants` | see `--help` | max `?query` URLs per path (crawl-trap guard) |
+| `--urls-file` | none | file with one start URL per line |
+| `-v/--verbose` | off | verbose logging |
 | `--contact` | none | added to the User-Agent so site owners can reach you |
 
 ## Output (`out/<host>/`)
@@ -69,5 +74,6 @@ site's terms and copyright.
 ## Tests
 
 ```bash
+pip install pytest
 python -m pytest        # offline, uses a local HTTP server
 ```
